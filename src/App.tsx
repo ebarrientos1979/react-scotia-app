@@ -1,6 +1,5 @@
-import Componente from "./components/clase02/Componente";
-import { UsuarioDummy } from "./components/constantes/constantes";
 import "bootstrap/dist/css/bootstrap.min.css"
+import ComponentStateHook from "./components/clase02/ComponentStateHook";
 
 
 function App(){
@@ -9,9 +8,7 @@ function App(){
 
   return (
     <>
-      <Componente
-        nombre={UsuarioDummy.nombre}
-        edad= {UsuarioDummy.edad}        
+      <ComponentStateHook
       />
     </>
   )
