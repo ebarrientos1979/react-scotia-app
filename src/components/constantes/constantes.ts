@@ -26,7 +26,7 @@ export const UsuarioDummy: Usuario = {
   },
 };
 
-export const USUARIOS: ListaUsuarios = {
+export const LISTA_USUARIO: ListaUsuarios = {
   usuarios: [
     {
       id: 1,
