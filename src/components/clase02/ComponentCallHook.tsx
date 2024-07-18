@@ -21,7 +21,7 @@ const ComponentCallHook : React.FC= () => {
             <h2 className="mb-3">Lista de números</h2>
             <ol>
                 {numeros.map((numero, indice) => (
-                    <li key={indice}>{numero}</li>
+                    <li key={indice}>{numero} - {indice}</li>
                 ))}
             </ol>
             <input className="form-control mb-3" type="number" value={valorInput}

@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import ComponentCallHook from "./components/clase02/ComponentCallHook";
+import ComponentEffectHook from "./components/clase02/ComponentEffectHook";
 
 
 function App(){
@@ -9,6 +10,9 @@ function App(){
   return (
     <>
       <ComponentCallHook
+      />
+
+      <ComponentEffectHook
       />
     </>
   )
