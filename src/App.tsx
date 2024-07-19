@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-import ComponentRefHook from "./components/clase02/ComponentRefHook";
+import ComponentCustomized from "./components/clase02/ComponentCustomized";
 
 
 function App(){
@@ -8,7 +8,7 @@ function App(){
 
   return (
     <>
-      <ComponentRefHook
+      <ComponentCustomized
       />
 
       
