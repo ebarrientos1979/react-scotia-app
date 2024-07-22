@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
@@ -8,30 +9,43 @@ function LoginForm() {
 
     const navigate = useNavigate();
 
-    const clickForm = useCallback(() => {
-       
-    }, [navigate]);
+    const clickForm = useCallback(() => {                
+        axios.post('http://localhost:8089/api/v1/auth/signin', {
+            email:username,
+            password:password
+        }).then(
+            (data) => {
+                console.log(data);
+            }
+        ).catch(
+            (error) => {
+                console.error(error);
+            }
+        );
+    }, [username, password, navigate]);
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        // Aquí puedes manejar la lógica de envío del formulario
-        console.log('Username:', username);
-        console.log('Password:', password);
+    const cambioPassword = (evento:React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(evento.target.value);
     };
 
+    const cambioUsuario = (evento:React.ChangeEvent<HTMLInputElement>) =>{                
+        setUsername(evento.target.value);        
+    };
+
+    
     return (
         <Container>
             <Row className="justify-content-md-center">
                 <Col md="4">
                     <h2 className="text-center">Inicio de Sesión</h2>
-                    <Form onSubmit={clickForm}>
+                    <Form>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Usuario</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Ingresa tu usuario"
                                 value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={cambioUsuario}
                             />
                         </Form.Group>
 
@@ -41,11 +55,11 @@ function LoginForm() {
                                 type="password"
                                 placeholder="Ingresa tu contraseña"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={cambioPassword}
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" className="w-100">
+                        <Button variant="primary" onClick={clickForm} className="w-100">
                             Iniciar Sesión
                         </Button>
                     </Form>
