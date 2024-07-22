@@ -18,7 +18,7 @@ function LoginForm() {
             (res) => {
                 if(res.data.token){
                     //navegar a la siguiente pagina
-                    
+                    navigate('/crudCliente')
                 }
             }
         ).catch(
@@ -67,14 +67,16 @@ function LoginForm() {
                         <Button variant="primary" onClick={clickForm} className="w-100">
                             Iniciar Sesión
                         </Button>
-                        <br/>
+                        
                         {
                             mensaje &&
-                            <Alert key="danger" variant="danger">
-                                { mensaje }
-                            </Alert>
-                        }
-                        
+                            <div>
+                                <br/>
+                                <Alert key="danger" variant="danger">
+                                    { mensaje }
+                                </Alert>
+                            </div>                            
+                        }                        
                     </Form>
                 </Col>
             </Row>
