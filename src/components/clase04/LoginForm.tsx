@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [mensaje, setMensaje] = useState('');
 
     const navigate = useNavigate();
 
@@ -14,12 +15,16 @@ function LoginForm() {
             email:username,
             password:password
         }).then(
-            (data) => {
-                console.log(data);
+            (res) => {
+                if(res.data.token){
+                    //navegar a la siguiente pagina
+                    
+                }
             }
         ).catch(
             (error) => {
                 console.error(error);
+                setMensaje("Email & Password incorrectos");
             }
         );
     }, [username, password, navigate]);
@@ -62,6 +67,14 @@ function LoginForm() {
                         <Button variant="primary" onClick={clickForm} className="w-100">
                             Iniciar Sesión
                         </Button>
+                        <br/>
+                        {
+                            mensaje &&
+                            <Alert key="danger" variant="danger">
+                                { mensaje }
+                            </Alert>
+                        }
+                        
                     </Form>
                 </Col>
             </Row>
