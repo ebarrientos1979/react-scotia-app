@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-import ComponentCustomized from "./components/clase02/ComponentCustomized";
+import GetService from "./components/clase03/GetService";
+import ComponentToken from "./components/clase03/ComponentToken";
 
 
 function App(){
@@ -8,10 +9,7 @@ function App(){
 
   return (
     <>
-      <ComponentCustomized
-      />
-
-      
+    <ComponentToken />   
     </>
   )
 }

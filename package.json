@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "@types/lodash": "^4.17.7",
-    "@types/node": "^16.18.87",
+    "@types/node": "^20.14.11",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
