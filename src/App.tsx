@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-import GetService from "./components/clase03/GetService";
-import ComponentToken from "./components/clase03/ComponentToken";
+import LoginForm from "./components/clase04/LoginForm";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ListarClientes from "./components/clase04/ListarClientes";
 
 
 function App(){
@@ -8,9 +9,12 @@ function App(){
   //return <MyComponent nombre="Edwin" apellido="Barrientos" dato={ numeros } />;
 
   return (
-    <>
-    <ComponentToken />   
-    </>
+    <Router>
+        <Routes>
+          <Route path='/' element={<LoginForm/>} />
+          <Route path='/crudCliente' element={<ListarClientes/>} />
+        </Routes>
+    </Router>
   )
 }
 
