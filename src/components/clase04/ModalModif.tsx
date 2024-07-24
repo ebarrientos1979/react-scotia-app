@@ -20,7 +20,7 @@ const ModalModif = (props: Props) => {
   const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
   const [clienteReturn, setClienteReturn] = useState<Cliente>();
-  const handleClose = () => setShow(false);
+  const handleClose = () =>  setShow(false);
 
   const saveCliente = () => {
     const fechaActual = new Date();
@@ -55,6 +55,7 @@ const ModalModif = (props: Props) => {
   };
 
   useEffect(() => {
+    console.log(props.indiceSel)
     if (props.indice == props.indiceSel){
         setShow(true)
         setNombre(props.cliente.nombre)

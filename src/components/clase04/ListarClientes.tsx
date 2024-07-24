@@ -74,7 +74,6 @@ const ListarClientes = (props: Props) => {
   };
 
   const modificarCliente = (event:any, dato:Cliente, indice:number) => {
-    
     setIndiceSel(event.target.id);
     
   }
@@ -100,6 +99,7 @@ const ListarClientes = (props: Props) => {
   const handleCliente = (cliente:Cliente) => {
     const indiceEncontrado = lista.findIndex(cli => cli.clienteId === cliente.clienteId);
     lista.splice(indiceEncontrado,1, cliente);
+    setIndiceSel(-1);
     setClienteReturn(cliente);
   }
 
