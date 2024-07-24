@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -6,19 +6,29 @@ import { Cliente } from './model/cliente';
 
 type Props = {
     flagShow: boolean,
-    cliente: Cliente
+    cliente: Cliente, 
+    indice:number,
+    indiceSel:number
 }
 
 const ModalModif = (props: Props) => {
-  const [show, setShow] = useState(props.flagShow);
+  const [show, setShow] = useState(false);
+  const [nombre, setNombre] = useState("");
   const handleClose = () => setShow(false);
 
+  useEffect(() => {
+    if (props.indice == props.indiceSel){
+        setShow(true)
+        setNombre(props.cliente.nombre)
+    }
+    //props.flagShow
+  }, []);
 
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Nuevo Cliente</Modal.Title>
+          <Modal.Title>Modificar Cliente</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -27,7 +37,7 @@ const ModalModif = (props: Props) => {
                             <Form.Control
                                 type="text"
                                 placeholder="Nombre"
-                                
+                                value={nombre}
                             />
             </Form.Group>
             <Form.Group controlId="Direccion">

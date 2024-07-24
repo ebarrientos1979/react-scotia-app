@@ -14,6 +14,7 @@ const ListarClientes = (props: Props) => {
   const [token, setToken] = useState<string>("");
   const [lista, setLista] = useState<Cliente[]>([]);
   const [config, setConfig] = useState({});  
+  const [indiceSel, setIndiceSel] = useState(0);
   const [flag, setFlag] = useState(false);
   const [inputValue, setInputValue] = useState('')
   const MySwal = withReactContent(Swal);
@@ -30,7 +31,7 @@ const ListarClientes = (props: Props) => {
   }, []);
 
   useEffect(() => {
-
+    
     cargarToken();
     axios.get('http://localhost:8089/v1/cliente/listar', config)
       .then((res)=> {        
@@ -72,7 +73,9 @@ const ListarClientes = (props: Props) => {
     });
   };
 
-  const modificarCliente = (event:any, dato:Cliente) => {
+  const modificarCliente = (event:any, dato:Cliente, indice:number) => {
+    
+    setIndiceSel(event.target.id);
     setFlag(prevFlag => !prevFlag);    
   }
 
@@ -120,11 +123,12 @@ const ListarClientes = (props: Props) => {
                 <td>{dato.email}</td>     
                 <td>{dato.fechaRegistro.toString()}</td>                                      
                 <td>
-                  <Button variant="primary" onClick={(event) => modificarCliente(event, dato)}>M</Button>
+                  <Button variant="primary" id={indice.toString()} onClick={(event) => modificarCliente(event, dato, indice)}>M</Button>
                   {
                     flag &&
-                    <ModalModif flagShow={flag} cliente={dato}/>    
-                  }                  
+                    <ModalModif flagShow={flag} indice={indice} indiceSel={indiceSel} cliente={dato}/>    
+                  }     
+                  {' '}             
                   <Button variant="danger" onClick={(event) => eliminarCliente(event, dato)}>E</Button>
                 </td>
               </tr>
