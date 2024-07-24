@@ -9,7 +9,8 @@ import ListarClientes from './ListarClientes';
 type Props = {
     cliente: Cliente, 
     indice:number,
-    indiceSel:number
+    indiceSel:number,
+    handleCliente:any,
 }
 
 const ModalModif = (props: Props) => {
@@ -18,6 +19,7 @@ const ModalModif = (props: Props) => {
   const [direccion, setDireccion] = useState("");
   const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
+  const [clienteReturn, setClienteReturn] = useState<Cliente>();
   const handleClose = () => setShow(false);
 
   const saveCliente = () => {
@@ -38,8 +40,18 @@ const ModalModif = (props: Props) => {
         headers: { Authorization: `Bearer ${ localStorage.getItem("tokenAcces") }` }
       })
       .then(
-        res => console.log(res)
+        res => {
+          props.handleCliente(res.data);    
+          setClienteReturn(res.data)
+        }
+      ).catch(
+        error => {
+          console.error(error)
+          props.handleCliente(cliente);
+          setClienteReturn(cliente)
+        }
       );
+      handleClose()      
   };
 
   useEffect(() => {

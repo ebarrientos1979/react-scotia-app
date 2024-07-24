@@ -16,6 +16,7 @@ const ListarClientes = (props: Props) => {
   const [config, setConfig] = useState({});  
   const [indiceSel, setIndiceSel] = useState(-1);
   const [inputValue, setInputValue] = useState('')
+  const [clienteReturn, setClienteReturn] = useState<Cliente>();
   const MySwal = withReactContent(Swal);
 
   const cargarToken = useCallback(() => {
@@ -96,6 +97,11 @@ const ListarClientes = (props: Props) => {
     });
   };
 
+  const handleCliente = (cliente:Cliente) => {
+    const indiceEncontrado = lista.findIndex(cli => cli.clienteId === cliente.clienteId);
+    lista.splice(indiceEncontrado,1, cliente);
+    setClienteReturn(cliente);
+  }
 
   return (
     <>      
@@ -125,7 +131,7 @@ const ListarClientes = (props: Props) => {
                   <Button variant="primary" id={indice.toString()} onClick={(event) => modificarCliente(event, dato, indice)}>M</Button>
                   {
                     indice == indiceSel &&
-                    <ModalModif indice={indice} indiceSel={indiceSel} cliente={dato}/>    
+                    <ModalModif indice={indice} indiceSel={indiceSel} cliente={dato} handleCliente={handleCliente}/>    
                   }     
                   {' '}             
                   <Button variant="danger" onClick={(event) => eliminarCliente(event, dato)}>E</Button>
