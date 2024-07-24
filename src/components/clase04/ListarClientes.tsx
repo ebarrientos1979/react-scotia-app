@@ -14,8 +14,7 @@ const ListarClientes = (props: Props) => {
   const [token, setToken] = useState<string>("");
   const [lista, setLista] = useState<Cliente[]>([]);
   const [config, setConfig] = useState({});  
-  const [indiceSel, setIndiceSel] = useState(0);
-  const [flag, setFlag] = useState(false);
+  const [indiceSel, setIndiceSel] = useState(-1);
   const [inputValue, setInputValue] = useState('')
   const MySwal = withReactContent(Swal);
 
@@ -76,7 +75,7 @@ const ListarClientes = (props: Props) => {
   const modificarCliente = (event:any, dato:Cliente, indice:number) => {
     
     setIndiceSel(event.target.id);
-    setFlag(prevFlag => !prevFlag);    
+    
   }
 
   const handleDelete = () => {
@@ -125,8 +124,8 @@ const ListarClientes = (props: Props) => {
                 <td>
                   <Button variant="primary" id={indice.toString()} onClick={(event) => modificarCliente(event, dato, indice)}>M</Button>
                   {
-                    flag &&
-                    <ModalModif flagShow={flag} indice={indice} indiceSel={indiceSel} cliente={dato}/>    
+                    indice == indiceSel &&
+                    <ModalModif indice={indice} indiceSel={indiceSel} cliente={dato}/>    
                   }     
                   {' '}             
                   <Button variant="danger" onClick={(event) => eliminarCliente(event, dato)}>E</Button>

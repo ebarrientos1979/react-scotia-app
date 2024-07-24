@@ -5,7 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 import { Cliente } from './model/cliente';
 
 type Props = {
-    flagShow: boolean,
     cliente: Cliente, 
     indice:number,
     indiceSel:number
