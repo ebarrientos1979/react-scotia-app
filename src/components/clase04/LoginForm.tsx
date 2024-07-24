@@ -17,6 +17,7 @@ function LoginForm() {
         }).then(
             (res) => {
                 if(res.data.token){
+                    localStorage.setItem("tokenAcces", res.data.token);
                     //navegar a la siguiente pagina
                     navigate('/crudCliente')
                 }
@@ -30,10 +31,12 @@ function LoginForm() {
     }, [username, password, navigate]);
 
     const cambioPassword = (evento:React.ChangeEvent<HTMLInputElement>) => {
+        setMensaje("");
         setPassword(evento.target.value);
     };
 
     const cambioUsuario = (evento:React.ChangeEvent<HTMLInputElement>) =>{                
+        setMensaje("");
         setUsername(evento.target.value);        
     };
 
